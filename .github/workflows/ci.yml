@@ -1,0 +1,16 @@
+name: Bun CI
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  analysis:
+    name: analysis
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v1
+    - run: bun install
+    - run: bun run ts-check
+    # - run: bun test # tests do not run, maybe same issue as https://github.com/oven-sh/bun/issues/6751
